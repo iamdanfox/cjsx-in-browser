@@ -3,4 +3,4 @@ CJSX In Browser
 
 Try it out on CodePen
 
-<http://codepen.io/anon/pen/ljhbF?editors=100>
+<http://codepen.io/iamdanfox/pen/oywJq?editors=100>

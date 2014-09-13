@@ -1,13 +1,31 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({"/Users/danfox/cjsx-in-browser/index.js":[function(require,module,exports){
-var coffeeReactTransform = require('coffee-react-transform')
-var CoffeeScript = require('coffee-script')
+(function(){
 
-var scripts = document.querySelectorAll("script[type='text/cjsx']");
-for (var i=0;i < scripts.length; i++){
-  scripts[i].setAttribute("type","text/javascript");
-  scripts[i].innerHTML = CoffeeScript.compile(coffeeReactTransform(scripts[i].innerHTML));
-}
+  var coffeeReactTransform = require('coffee-react-transform')
+  var CoffeeScript = require('coffee-script')
 
+  var scripts = document.querySelectorAll("script[type='text/cjsx']");
+  for (var i=0;i < scripts.length; i++){
+
+    var originalCJSX = scripts[i].innerHTML;
+    var coffee = coffeeReactTransform(originalCJSX);
+    compilerResult = CoffeeScript.compile(coffee, {
+      sourceMap: true
+    });
+
+    function sourceMapComment(sourceMap) {
+      sourceMap.sources[0] = "embedded_cjsx_" + i;
+      sourceMap.sourcesContent = [originalCJSX];
+      base64 = btoa(JSON.stringify(sourceMap));
+      var datauri = 'data:application/json;charset=utf-8;base64,' + base64;
+      return "\n//@ sourceMappingURL=" + datauri;
+    }
+
+    var v3SourceMap = JSON.parse(compilerResult.v3SourceMap);
+    eval(compilerResult.js + sourceMapComment(v3SourceMap));
+  }
+
+})();
 
 },{"coffee-react-transform":"/Users/danfox/cjsx-in-browser/node_modules/coffee-react-transform/index.js","coffee-script":"/Users/danfox/cjsx-in-browser/node_modules/coffee-script/lib/coffee-script/coffee-script.js"}],"/Users/danfox/cjsx-in-browser/node_modules/coffee-react-transform/index.js":[function(require,module,exports){
 module.exports = require('./lib/transformer').transform;

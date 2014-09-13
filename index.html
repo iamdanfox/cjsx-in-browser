@@ -1,0 +1,25 @@
+<html>
+    <head>
+        <script type="text/cjsx">
+
+        console.log 'cjsx', <a />
+
+        </script>
+
+
+        <script type="text/javascript" src="http://fb.me/react-0.11.1.js"></script>
+        <script type="text/javascript" src="http://wzrd.in/standalone/coffee-react-transform"></script>
+        <script type="text/javascript">
+            var scripts = document.querySelectorAll("script[type='text/cjsx']")
+            for (i=0;i < scripts.length; i++){
+                scripts[i].setAttribute('type','text/coffeescript');
+                scripts[i].innerHTML = coffeeReactTransform(scripts[i].innerHTML);
+            }
+        </script>
+
+        <script type="text/javascript" src="coffee-script.js"></script>
+    </head>
+    <body>
+    Hello, world!
+    </body>
+</html>

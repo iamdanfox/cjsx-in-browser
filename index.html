@@ -2,22 +2,21 @@
 <head>
 
 <script type="text/cjsx">
-
 HelloWorldApp = React.createClass
   render: ->
-    console.log 'a'
+    console.log 'click the filename on the right to view source!'
     <div>
         <h1>Hello, world</h1>
         <ul>
-        { <li>{console.log 'p'; i}</li> for i in [0..10] }
+        { <li>{i}</li> for i in [0..10] }
         </ul>
     </div>
 
 React.renderComponent <HelloWorldApp />, document.documentElement
 </script>
 
-<script type="text/javascript" src="lib/react-0.11.1.js"></script>
-<script type="text/javascript" src="bundle.js"></script>
+<script type="text/javascript" src="http://fb.me/react-0.11.1.js"></script>
+<script type="text/javascript" src="cjsx-in-browser.js"></script>
 </head>
 <body>
 </body>

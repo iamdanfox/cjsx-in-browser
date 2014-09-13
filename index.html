@@ -1,6 +1,7 @@
 <html>
 <head>
 
+<script type="text/javascript" src="lib/react-0.11.1.js"></script>
 <script type="text/cjsx">
 
 HelloWorldApp = React.createClass
@@ -16,17 +17,7 @@ HelloWorldApp = React.createClass
 React.renderComponent <HelloWorldApp />, document.documentElement
 </script>
 
-<script type="text/javascript" src="lib/react-0.11.1.js"></script>
-<script type="text/javascript" src="lib/coffee-react-transform.js"></script>
-<script type="text/javascript">
-  var scripts = document.querySelectorAll("script[type='text/cjsx']");
-  for (var i=0;i < scripts.length; i++){
-    scripts[i].setAttribute("type","text/coffeescript");
-    scripts[i].innerHTML = coffeeReactTransform(scripts[i].innerHTML);
-  }
-</script>
-<script type="text/javascript" src="lib/coffee-script.js"></script>
-
+<script type="text/javascript" src="bundle.js"></script>
 </head>
 <body>
 <!-- body replaced by cjsx script above -->

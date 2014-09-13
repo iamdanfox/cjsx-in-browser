@@ -22,5 +22,9 @@
   "bugs": {
     "url": "https://github.com/iamdanfox/cjsx-in-browser/issues"
   },
-  "homepage": "https://github.com/iamdanfox/cjsx-in-browser"
+  "homepage": "https://github.com/iamdanfox/cjsx-in-browser",
+  "dependencies": {
+    "coffee-react-transform": "^0.5.2",
+    "coffee-script": "^1.8.0"
+  }
 }

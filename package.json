@@ -26,5 +26,9 @@
   "dependencies": {
     "coffee-react-transform": "^0.5.2",
     "coffee-script": "^1.8.0"
+  },
+  "devDependencies": {
+    "browserify": "^5.11.2",
+    "watchify": "^1.0.2"
   }
 }

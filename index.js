@@ -3,25 +3,29 @@
   var coffeeReactTransform = require('coffee-react-transform')
   var CoffeeScript = require('coffee-script')
 
-  var scripts = document.querySelectorAll("script[type='text/cjsx']");
-  for (var i=0;i < scripts.length; i++){
+  function sourceMapComment(originalCJSX, transformedCJSX, sourceMap, fileName) {
+    sourceMap.sources = [fileName, fileName + "_transformed"];
+    sourceMap.sourcesContent = [originalCJSX, transformedCJSX];
 
-    var originalCJSX = scripts[i].innerHTML;
+    var base64 = btoa(JSON.stringify(sourceMap));
+    var dataUri = 'data:application/json;charset=utf-8;base64,' + base64;
+
+    return "\n//@ sourceMappingURL=" + dataUri;
+  }
+
+  function processCJSX (originalCJSX) {
     var coffee = coffeeReactTransform(originalCJSX);
-    compilerResult = CoffeeScript.compile(coffee, {
+    var compilerResult = CoffeeScript.compile(coffee, {
       sourceMap: true
     });
-
-    function sourceMapComment(sourceMap) {
-      sourceMap.sources[0] = "embedded_cjsx_" + i;
-      sourceMap.sourcesContent = [originalCJSX];
-      base64 = btoa(JSON.stringify(sourceMap));
-      var datauri = 'data:application/json;charset=utf-8;base64,' + base64;
-      return "\n//@ sourceMappingURL=" + datauri;
-    }
-
     var v3SourceMap = JSON.parse(compilerResult.v3SourceMap);
-    eval(compilerResult.js + sourceMapComment(v3SourceMap));
+
+    eval(compilerResult.js + sourceMapComment(originalCJSX, coffee, v3SourceMap, "cjsx_" + i));
+  }
+
+  var scripts = document.querySelectorAll("script[type='text/cjsx']");
+  for (var i = 0; i < scripts.length; i++){
+    processCJSX(scripts[i].innerHTML);
   }
 
 })();

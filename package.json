@@ -1,6 +1,6 @@
 {
   "name": "cjsx-in-browser",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Coffee-React-Transform in the browser",
   "scripts": {
     "build": "browserify cjsx-in-browser-src.js -o cjsx-in-browser.js",

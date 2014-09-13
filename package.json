@@ -1,0 +1,26 @@
+{
+  "name": "cjsx-in-browser",
+  "version": "0.1.0",
+  "description": "Coffee-React-Transform in the browser",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "iamdanfox",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/iamdanfox/cjsx-in-browser.git"
+  },
+  "keywords": [
+    "CoffeeScript",
+    "CJSX",
+    "React",
+    "Facebook",
+    "Compiler",
+    "JSX"
+  ],
+  "bugs": {
+    "url": "https://github.com/iamdanfox/cjsx-in-browser/issues"
+  },
+  "homepage": "https://github.com/iamdanfox/cjsx-in-browser"
+}
